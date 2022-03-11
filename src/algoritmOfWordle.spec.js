@@ -32,4 +32,60 @@ describe("wordle algoritm", () => {
     expect(result[3].result).toEqual("Incorrect");
     expect(result[4].result).toEqual("Correct");
   });
+
+  it("Checking case 1 ", () => {
+    const result = algoritmOfWordle("Halaa", "Cykla");
+
+    expect(result[0].result).toEqual("Incorrect");
+    expect(result[1].result).toEqual("Incorrect");
+    expect(result[2].result).toEqual("Misplaced");
+    expect(result[3].result).toEqual("Incorrect");
+    expect(result[4].result).toEqual("Correct");
+  });
+  it("Checking case 2 ", () => {
+    const result = algoritmOfWordle("Halaa", "Cylla");
+
+    expect(result[0].result).toEqual("Incorrect");
+    expect(result[1].result).toEqual("Incorrect");
+    expect(result[2].result).toEqual("Correct");
+    expect(result[3].result).toEqual("Incorrect");
+    expect(result[4].result).toEqual("Correct");
+  });
+  it("Checking case 3 ", () => {
+    const result = algoritmOfWordle("Llloo", "hllll");
+
+    expect(result[0].result).toEqual("Misplaced");
+    expect(result[1].result).toEqual("Correct");
+    expect(result[2].result).toEqual("Correct");
+    expect(result[3].result).toEqual("Incorrect");
+    expect(result[4].result).toEqual("Incorrect");
+  });
+  it("Checking case 4", () => {
+    const result = algoritmOfWordle("Hallå", "haåll");
+
+    expect(result[0].result).toEqual("Correct");
+    expect(result[1].result).toEqual("Correct");
+    expect(result[2].result).toEqual("Misplaced");
+    expect(result[3].result).toEqual("Correct");
+    expect(result[4].result).toEqual("Misplaced");
+  });
+  it("Checking case 5 ", () => {
+    const result = algoritmOfWordle("hlalo", "heloo");
+
+    expect(result[0].result).toEqual("Correct");
+    expect(result[1].result).toEqual("Misplaced");
+    expect(result[2].result).toEqual("Incorrect");
+    expect(result[3].result).toEqual("Incorrect");
+    expect(result[4].result).toEqual("Correct");
+  });
+
+  it("Checking case 6 ", () => {
+    const result = algoritmOfWordle("hallå", "cykla");
+
+    expect(result[0].result).toEqual("Incorrect");
+    expect(result[1].result).toEqual("Misplaced");
+    expect(result[2].result).toEqual("Incorrect");
+    expect(result[3].result).toEqual("Correct");
+    expect(result[4].result).toEqual("Incorrect");
+  });
 });

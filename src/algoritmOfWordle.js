@@ -15,10 +15,13 @@ export const algoritmOfWordle = (inputGuessingWord, inputCorrectWord) => {
       let charExists = correctWord.includes(char);
 
       if (charExists && charIsAtCorrectPosition) {
+        //give Correct
         result.push({ letter: char, result: "Correct" });
       } else if (charExists && !charIsAtCorrectPosition) {
+        //give Misplaced no matter what if it exists and not at the same position
         result.push({ letter: char, result: "Misplaced" });
       } else {
+        //give incorrect if it doesn't exist
         result.push({ letter: char, result: "Incorrect" });
       }
     });
@@ -47,29 +50,19 @@ export const algoritmOfWordle = (inputGuessingWord, inputCorrectWord) => {
             }
             remove--;
           });
-      } else if (multiCharInGuess > multiCharInCorrect) {
-        result.forEach((item) => {
-          if (item.letter === character && item.result === "Misplaced") {
-            item.result = "Incorrect";
-          }
-        });
       }
     });
 
   return result;
 };
+var characters = "abcdefghiklmnopqrstuvwxyz";
+var randomWord = "";
 
-console.log(algoritmOfWordle("Halaa", "Cykla"));
-// //인,인,미,인,코
-console.log(algoritmOfWordle("Halaa", "Cylla"));
-// //인,인,코,인,코
-console.log(algoritmOfWordle("Llloo", "hllll"));
-// //미코코인인
-console.log(algoritmOfWordle("hallå", "haåll"));
-//코코미코미;
-console.log(algoritmOfWordle("hlalo", "heloo"));
-//코미인인코
-console.log(algoritmOfWordle("llalll", "helolo"));
-//미인인인코인
+for (let i = 0; i < 5; i++) {
+  let rnum = Math.floor(Math.random() * characters.length);
+  randomWord += characters.substring(rnum, rnum + 1);
+}
+console.log(randomWord);
+console.log(algoritmOfWordle(randomWord, "Cykla"));
+
 console.log(algoritmOfWordle("Hallå", "cykla"));
-//인미인코인
