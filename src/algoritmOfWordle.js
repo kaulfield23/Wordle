@@ -30,13 +30,18 @@ export const algoritmOfWordle = (inputGuessingWord, inputCorrectWord) => {
   guessingWord
     .filter((item, idx, array) => array.indexOf(item) === idx)
     .forEach((character) => {
+      //check duplicated characters in guessing word
       const multiCharInGuess = guessingWord.filter(
         (char) => char === character
       ).length;
+      //check duplicated characters in correct word
       const multiCharInCorrect = correctWord.filter(
         (char) => char === character
       ).length;
 
+      // if number of duplicated chars in guessing word are more than correct word
+      // then it will change misplaced to incorrect from the end of the array
+      // because only number of multiCharInCorrect's 'misplaced' can be remained as 'Misplaced'
       if (multiCharInGuess > multiCharInCorrect && multiCharInGuess >= 2) {
         let remove = multiCharInGuess - multiCharInCorrect;
         result
