@@ -31,19 +31,22 @@ export const algoritmOfWordle = (inputGuessingWord, inputCorrectWord) => {
     .filter((item, idx, array) => array.indexOf(item) === idx)
     .forEach((character) => {
       //check duplicated characters in guessing word
-      const multiCharInGuess = guessingWord.filter(
+      const duplicatedCharInGuess = guessingWord.filter(
         (char) => char === character
       ).length;
       //check duplicated characters in correct word
-      const multiCharInCorrect = correctWord.filter(
+      const duplicatedCharInCorrect = correctWord.filter(
         (char) => char === character
       ).length;
 
       // if number of duplicated chars in guessing word are more than correct word
       // then it will change misplaced to incorrect from the end of the array
-      // because only number of multiCharInCorrect's 'misplaced' can be remained as 'Misplaced'
-      if (multiCharInGuess > multiCharInCorrect && multiCharInGuess >= 2) {
-        let remove = multiCharInGuess - multiCharInCorrect;
+      // because only number of duplicatedCharInCorrect's 'misplaced' can be remained as 'Misplaced'
+      if (
+        duplicatedCharInGuess > duplicatedCharInCorrect &&
+        duplicatedCharInGuess >= 2
+      ) {
+        let remove = duplicatedCharInGuess - duplicatedCharInCorrect;
         result
           .filter(
             (item) => item.letter === character && item.result === "Misplaced"
@@ -64,8 +67,8 @@ var characters = "abcdefghiklmnopqrstuvwxyz";
 var randomWord = "";
 
 for (let i = 0; i < 5; i++) {
-  let rnum = Math.floor(Math.random() * characters.length);
-  randomWord += characters.substring(rnum, rnum + 1);
+  let randomNum = Math.floor(Math.random() * characters.length);
+  randomWord += characters.substring(randomNum, randomNum + 1);
 }
 console.log(randomWord);
 console.log(algoritmOfWordle(randomWord, "Cykla"));
