@@ -2,59 +2,30 @@ export const chooseWord = (input) => {
   let filteredWordList = [];
 
   input.words
-    .filter((item) => {
-      if (item.length !== input.numberOfWord) {
-        console.log(
-          `Word ${item} has not same length as ${input.numberOfWord}`
-        );
-        return false;
-      } else {
-        return true;
-      }
-    })
+    //filter the length first
+    .filter((item) => item.length === input.numberOfWord)
     .forEach((word) => {
-      let checkDuplicated = false;
+      let isDuplicated = false;
+      //check if there is a same character behind the word[i]
       for (let i = 0; i < input.numberOfWord; i++) {
         if (word.slice(i + 1).includes(word[i])) {
           i = input.numberOfWord;
-          checkDuplicated = true;
+          isDuplicated = true;
         }
       }
       if (
-        (checkDuplicated && input.indication === "duplicated") ||
-        (!checkDuplicated && input.indication !== "duplicated")
+        (isDuplicated && input.indication === "duplicated") ||
+        (!isDuplicated && input.indication !== "duplicated")
       ) {
         filteredWordList.push(word);
-      } else {
-        console.log(`Word ${word} is has no ${input.indication} character`);
       }
     });
 
-  let randomOutput =
-    filteredWordList[Math.floor(Math.random() * (filteredWordList.length - 1))];
-
-  return randomOutput;
+  let output =
+    filteredWordList.length === 0
+      ? `There is no matching word for it`
+      : filteredWordList[
+          Math.floor(Math.random() * (filteredWordList.length - 1))
+        ];
+  return output;
 };
-
-let input = {
-  words: [
-    "hello",
-    "hamburger",
-    "maybe",
-    "sorry",
-    "wordle",
-    "difficult",
-    "easy",
-    "sleep",
-    "tired",
-    "water",
-    "drink",
-    "pho",
-    "hi",
-    "pizza",
-    "hatch",
-  ],
-  numberOfWord: 5,
-  indication: "not duplicated",
-};
-console.log(chooseWord(input));

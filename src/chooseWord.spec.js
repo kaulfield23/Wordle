@@ -5,13 +5,14 @@ describe("wordle algoritm", () => {
     let input = {
       words: ["hello", "world", "meh"],
       numberOfWord: 5,
+      indication: "duplicated",
     };
     const result = chooseWord(input);
 
     expect(result.length).toEqual(input.numberOfWord);
   });
 
-  it("should return word that has duplicated characters that length is 5", () => {
+  it("should return word that has duplicated characters and word length is 5", () => {
     let input = {
       words: ["hello", "world", "meh"],
       numberOfWord: 5,
@@ -21,7 +22,7 @@ describe("wordle algoritm", () => {
 
     expect(result).toEqual("hello");
   });
-  it("should return random word that has duplicated characters that length is 5", () => {
+  it("should return random word that has duplicated characters and word length is 5", () => {
     let input = {
       words: [
         "hello",
@@ -50,7 +51,7 @@ describe("wordle algoritm", () => {
     expect(duplicatedWord.includes(result)).toEqual(true);
   });
 
-  it("should return word that has not duplicated characters that length is 5", () => {
+  it("should return word that has not duplicated characters and word length is 5", () => {
     let input = {
       words: ["hello", "world", "meh"],
       numberOfWord: 5,
@@ -61,7 +62,7 @@ describe("wordle algoritm", () => {
     expect(result).toEqual("world");
   });
 
-  it("should return random word that has not duplicated characters that length is 5", () => {
+  it("should return random word that has not duplicated characters and word length is 5", () => {
     let input = {
       words: [
         "hello",
@@ -88,5 +89,32 @@ describe("wordle algoritm", () => {
     const result = chooseWord(input);
 
     expect(noDuplicatedWord.includes(result)).toEqual(true);
+  });
+  it("should return error msg when there are no matching result", () => {
+    let input = {
+      words: [
+        "hello",
+        "hamburger",
+        "maybe",
+        "sorry",
+        "wordle",
+        "difficult",
+        "easy",
+        "sleep",
+        "tired",
+        "water",
+        "drink",
+        "pho",
+        "hi",
+        "pizza",
+        "hatch",
+      ],
+      numberOfWord: 8,
+      indication: "not duplicated",
+    };
+
+    const result = chooseWord(input);
+
+    expect(result).toEqual("There is no matching word for it");
   });
 });

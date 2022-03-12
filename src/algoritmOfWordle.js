@@ -1,4 +1,4 @@
-export const algoritmOfWordle = (inputGuessingWord, inputCorrectWord) => {
+export const verifyWord = (inputGuessingWord, inputCorrectWord) => {
   let guessingWord = inputGuessingWord.toUpperCase().split("");
   let correctWord = inputCorrectWord.toUpperCase().split("");
   let result = [];
@@ -18,7 +18,7 @@ export const algoritmOfWordle = (inputGuessingWord, inputCorrectWord) => {
         //give Correct
         result.push({ letter: char, result: "Correct" });
       } else if (charExists && !charIsAtCorrectPosition) {
-        //give Misplaced no matter what if it exists and not at the same position
+        //give Misplaced no matter what when character exists and not at the same position
         result.push({ letter: char, result: "Misplaced" });
       } else {
         //give incorrect if it doesn't exist
@@ -63,14 +63,3 @@ export const algoritmOfWordle = (inputGuessingWord, inputCorrectWord) => {
 
   return result;
 };
-var characters = "abcdefghiklmnopqrstuvwxyz";
-var randomWord = "";
-
-for (let i = 0; i < 5; i++) {
-  let randomNum = Math.floor(Math.random() * characters.length);
-  randomWord += characters.substring(randomNum, randomNum + 1);
-}
-console.log(randomWord);
-console.log(algoritmOfWordle(randomWord, "Cykla"));
-
-console.log(algoritmOfWordle("Hallå", "cykla"));
