@@ -33,7 +33,7 @@ describe("wordle algoritm", () => {
     expect(result[4].result).toEqual("Correct");
   });
 
-  it("Checking case 1 ", () => {
+  it("should give Misplaced or Correct when guessing word has more duplicated word than correct word and one of character's position is right", () => {
     const result = verifyWord("Halaa", "Cykla");
 
     expect(result[0].result).toEqual("Incorrect");
@@ -42,34 +42,8 @@ describe("wordle algoritm", () => {
     expect(result[3].result).toEqual("Incorrect");
     expect(result[4].result).toEqual("Correct");
   });
-  it("Checking case 2 ", () => {
-    const result = verifyWord("Halaa", "Cylla");
 
-    expect(result[0].result).toEqual("Incorrect");
-    expect(result[1].result).toEqual("Incorrect");
-    expect(result[2].result).toEqual("Correct");
-    expect(result[3].result).toEqual("Incorrect");
-    expect(result[4].result).toEqual("Correct");
-  });
-  it("Checking case 3 ", () => {
-    const result = verifyWord("Llloo", "hllll");
-
-    expect(result[0].result).toEqual("Misplaced");
-    expect(result[1].result).toEqual("Correct");
-    expect(result[2].result).toEqual("Correct");
-    expect(result[3].result).toEqual("Incorrect");
-    expect(result[4].result).toEqual("Incorrect");
-  });
-  it("Checking case 4", () => {
-    const result = verifyWord("Hallå", "haåll");
-
-    expect(result[0].result).toEqual("Correct");
-    expect(result[1].result).toEqual("Correct");
-    expect(result[2].result).toEqual("Misplaced");
-    expect(result[3].result).toEqual("Correct");
-    expect(result[4].result).toEqual("Misplaced");
-  });
-  it("Checking case 5 ", () => {
+  it("should give Misplaced or Incorrect when guessing word has more duplicated word than correct word and one of character's position is not right ", () => {
     const result = verifyWord("hlalo", "heloo");
 
     expect(result[0].result).toEqual("Correct");
@@ -79,7 +53,27 @@ describe("wordle algoritm", () => {
     expect(result[4].result).toEqual("Correct");
   });
 
-  it("Checking case 6 ", () => {
+  it("check when correct character has more duplicated character", () => {
+    const result = verifyWord("Hclea", "Cylla");
+
+    expect(result[0].result).toEqual("Incorrect");
+    expect(result[1].result).toEqual("Misplaced");
+    expect(result[2].result).toEqual("Correct");
+    expect(result[3].result).toEqual("Incorrect");
+    expect(result[4].result).toEqual("Correct");
+  });
+
+  it("check case when guessing word has 3 same characters ", () => {
+    const result = verifyWord("Llloo", "hllll");
+
+    expect(result[0].result).toEqual("Misplaced");
+    expect(result[1].result).toEqual("Correct");
+    expect(result[2].result).toEqual("Correct");
+    expect(result[3].result).toEqual("Incorrect");
+    expect(result[4].result).toEqual("Incorrect");
+  });
+
+  it("test Richard's example", () => {
     const result = verifyWord("hallå", "cykla");
 
     expect(result[0].result).toEqual("Incorrect");

@@ -1,23 +1,21 @@
-export const chooseWord = (input) => {
-  let filteredWordList = [];
-
-  input.words
+export const chooseWord = (input, numberOfWord, indication) => {
+  let filteredWordList = input
     //filter the length first
-    .filter((item) => item.length === input.numberOfWord)
-    .forEach((word) => {
+    .filter((item) => item.length === numberOfWord)
+    .filter((word) => {
       let isDuplicated = false;
       //check if there is a same character behind the word[i]
-      for (let i = 0; i < input.numberOfWord; i++) {
+      for (let i = 0; i < numberOfWord; i++) {
         if (word.slice(i + 1).includes(word[i])) {
-          i = input.numberOfWord;
+          i = numberOfWord;
           isDuplicated = true;
         }
       }
       if (
-        (isDuplicated && input.indication === "duplicated") ||
-        (!isDuplicated && input.indication !== "duplicated")
+        (isDuplicated && indication === "duplicated") ||
+        (!isDuplicated && indication !== "duplicated")
       ) {
-        filteredWordList.push(word);
+        return true;
       }
     });
 
